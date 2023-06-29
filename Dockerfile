@@ -12,10 +12,4 @@ RUN apt-get update && apt-get install --no-install-recommends -y python3-pip && 
     
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN useradd -m nonpriv
-
-RUN chown nonpriv:nonpriv .
-
-USER nonpriv
-
 CMD exec gunicorn --bind :8080 --workers 1 --threads 1 --timeout 0 main:app
